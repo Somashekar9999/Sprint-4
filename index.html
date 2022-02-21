@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    #container {
+      display: flex;
+      height: 1000px;
+    }
+    #sidebar {
+      flex: 3;
+      border: solid 1px black;
+    }
+    #main {
+      flex: 7;
+      border: solid 1px black;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div id="sidebar">
+        <div>login</div>
+        <input type="text" id="searchbar" />
+        <div>startups</div>
+        <div>Newsletter</div>
+        <div>Audio</div>
+        <div>Video</div>
+      </div>
+      <div id="main"></div>
+    </div>
+  </body>
+</html>
+<script>
+  let sidebar_div = document.getElementById("sidebar");
+  sidebar_div.innerHTML = sidebar();
+  let images_data = makeAPICall(
+    "https://shrouded-earth-23381.herokuapp.com/api/search/?q=${search_term}"
+  );
+
+  console.log("images_data:", images_data);
+
+  let parent = document.getElementById("main");
+
+  appendPictures(images_data, parent);
+  let input = document.getElementById("searchbar");
+
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "enter") {
+      let input_value = document.getElementById("searchbar").value;
+      localStorage.setItem("search_term", input_value);
+      window.location.href = "search.html";
+    }
+  });
+</script>
