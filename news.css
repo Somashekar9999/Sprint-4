@@ -1,0 +1,28 @@
+#container{
+    display: flex;
+    flex-direction: row;
+}
+td,tr{
+    border: 1px solid gray;
+    border-collapse: collapse;
+     padding: 15px;
+}
+table{
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+img{
+    border-radius: 20px;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+td:nth-child(1){
+    font-weight: bold;
+    font-size: 25px;
+}
